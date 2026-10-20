@@ -1,244 +1,325 @@
 <!DOCTYPE html>
 <html lang="am">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Gebeta - Ethiopian Online Marketplace</title>
+<title>Gebeta - Ethiopian Online Marketplace</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f7fa;
-      color: #222;
-    }
-
-    header {
-      background: #111827;
-      color: white;
-      padding: 18px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 15px;
-      font-size: 14px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 55px 20px;
-      background: white;
-    }
-
-    .hero h1 {
-      font-size: 34px;
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      font-size: 17px;
-      color: #555;
-      margin-bottom: 25px;
-    }
-
-    .search {
-      max-width: 600px;
-      margin: auto;
-      display: flex;
-      gap: 8px;
-    }
-
-    .search input {
-      flex: 1;
-      padding: 15px;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      font-size: 16px;
-    }
-
-    .search button {
-      padding: 15px 20px;
-      border: none;
-      border-radius: 8px;
-      background: #16a34a;
-      color: white;
-      font-weight: bold;
-    }
-
-    .buttons {
-      margin-top: 25px;
-    }
-
-    .buttons a {
-      display: inline-block;
-      padding: 13px 20px;
-      margin: 5px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .browse {
-      background: #16a34a;
-      color: white;
-    }
-
-    .sell {
-      background: #111827;
-      color: white;
-    }
-
-    section {
-      padding: 40px 20px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    section h2 {
-      text-align: center;
-      margin-bottom: 25px;
-      font-size: 27px;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: white;
-      padding: 25px;
-      border-radius: 12px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.08);
-      text-align: center;
-    }
-
-    .card h3 {
-      margin-bottom: 10px;
-    }
-
-    .card p {
-      color: #666;
-      line-height: 1.5;
-    }
-
-    .product {
-      text-align: left;
-    }
-
-    .product .emoji {
-      font-size: 55px;
-      margin-bottom: 15px;
-    }
-
-    .price {
-      color: #16a34a;
-      font-weight: bold;
-      font-size: 20px;
-      margin: 10px 0;
-    }
-
-    .contact {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 15px;
-      background: #16a34a;
-      color: white;
-      text-decoration: none;
-      border-radius: 7px;
-    }
-
-    .cta {
-      text-align: center;
-      background: #111827;
-      color: white;
-      max-width: none;
-    }
-
-    .cta p {
-      margin: 15px 0 25px;
-    }
-
-    .cta a {
-      background: #16a34a;
-      color: white;
-      padding: 13px 22px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    footer {
-      background: #0b1120;
-      color: #bbb;
-      text-align: center;
-      padding: 25px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      nav a {
-        margin: 0 5px;
-      }
-
-      .hero h1 {
-        font-size: 28px;
-      }
-
-      .search {
-        flex-direction: column;
-      }
-    }
-    
-   /* Gebeta Product Categories */
-.categories {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin: 20px 0 30px;
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
 }
 
-.categories a {
-  display: inline-block;
-  background: #ffffff;
-  color: #166534;
-  border: 1px solid #d1e7d5;
-  border-radius: 12px;
-  padding: 12px 16px;
-  text-decoration: none;
-  font-weight: bold;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  transition: 0.2s;
+body{
+  font-family:Arial,sans-serif;
+  background:#f5f7fa;
+  color:#222;
 }
 
-.categories a:hover {
-  background: #166534;
-  color: #ffffff;
-} 
-  </style>
+header{
+  background:#111827;
+  color:white;
+  padding:16px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:bold;
+}
+
+nav a{
+  color:white;
+  text-decoration:none;
+  margin:5px;
+  font-size:14px;
+}
+
+.hero{
+  text-align:center;
+  padding:50px 20px;
+  background:white;
+}
+
+.hero h1{
+  font-size:34px;
+  margin-bottom:15px;
+}
+
+.hero p{
+  font-size:17px;
+  color:#555;
+  margin-bottom:25px;
+}
+
+.search{
+  max-width:600px;
+  margin:auto;
+  display:flex;
+  gap:8px;
+}
+
+.search input{
+  flex:1;
+  padding:14px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:16px;
+}
+
+button,
+.btn{
+  border:none;
+  cursor:pointer;
+  padding:12px 18px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+.search button,
+.green{
+  background:#16a34a;
+  color:white;
+}
+
+.buttons{
+  margin-top:25px;
+}
+
+.buttons a{
+  display:inline-block;
+  padding:13px 20px;
+  margin:5px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;
+}
+
+.browse{
+  background:#16a34a;
+  color:white;
+}
+
+.sell{
+  background:#111827;
+  color:white;
+}
+
+section{
+  padding:40px 20px;
+  max-width:1100px;
+  margin:auto;
+}
+
+section h2{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.categories{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-bottom:30px;
+}
+
+.categories button{
+  background:white;
+  color:#166534;
+  border:1px solid #d1e7d5;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:white;
+  padding:22px;
+  border-radius:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.product{
+  text-align:left;
+}
+
+.emoji{
+  font-size:55px;
+  text-align:center;
+  margin-bottom:10px;
+}
+
+.price{
+  color:#16a34a;
+  font-weight:bold;
+  font-size:20px;
+  margin:10px 0;
+}
+
+.product button{
+  width:100%;
+  margin-top:8px;
+}
+
+.contact{
+  background:#111827;
+  color:white;
+}
+
+.add{
+  background:#16a34a;
+  color:white;
+}
+
+.form-box{
+  background:white;
+  max-width:650px;
+  margin:auto;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.form-box label{
+  display:block;
+  margin-top:14px;
+  margin-bottom:6px;
+  font-weight:bold;
+}
+
+.form-box input,
+.form-box select,
+.form-box textarea{
+  width:100%;
+  padding:13px;
+  border:1px solid #ddd;
+  border-radius:8px;
+  font-size:15px;
+}
+
+.form-box button{
+  width:100%;
+  margin-top:20px;
+  background:#16a34a;
+  color:white;
+}
+
+.preview{
+  width:120px;
+  height:120px;
+  object-fit:cover;
+  border-radius:10px;
+  margin-top:10px;
+  display:none;
+}
+
+.cart-box{
+  background:white;
+  max-width:800px;
+  margin:auto;
+  padding:25px;
+  border-radius:12px;
+  box-shadow:0 3px 12px rgba(0,0,0,.08);
+}
+
+.cart-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+  padding:15px 0;
+  border-bottom:1px solid #eee;
+}
+
+.qty button{
+  padding:5px 10px;
+  background:#eee;
+}
+
+.total{
+  text-align:right;
+  font-size:22px;
+  font-weight:bold;
+  color:#16a34a;
+  margin-top:20px;
+}
+
+.modal{
+  display:none;
+  position:fixed;
+  z-index:1000;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,.6);
+  overflow:auto;
+}
+
+.modal-content{
+  background:white;
+  width:92%;
+  max-width:600px;
+  margin:8% auto;
+  padding:25px;
+  border-radius:12px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:18px;
+  top:10px;
+  font-size:28px;
+  cursor:pointer;
+}
+
+footer{
+  background:#0b1120;
+  color:#bbb;
+  text-align:center;
+  padding:25px;
+  margin-top:30px;
+}
+
+.hidden{
+  display:none;
+}
+
+.notice{
+  padding:12px;
+  margin-top:15px;
+  border-radius:8px;
+  background:#ecfdf5;
+  color:#166534;
+}
+
+@media(max-width:600px){
+  .hero h1{
+    font-size:27px;
+  }
+
+  .search{
+    flex-direction:column;
+  }
+
+  .cart-item{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+}
+</style>
 </head>
 
 <body>
@@ -247,14 +328,16 @@
   <div class="logo">Gebeta 🇪🇹</div>
 
   <nav>
-    <nav>
-  <a href="#home">መነሻ</a>
-  <a href="#products">ምርቶች</a>
-  <a href="#services">አገልግሎቶች</a>
-  <a href="#sell">መሸጥ</a>
-</nav>
+    <a href="#home">መነሻ</a>
+    <a href="#products">ምርቶች</a>
+    <a href="#sell">መሸጥ</a>
+    <a href="#login">Login</a>
+    <a href="#cart">🛒 Cart (<span id="cartCount">0</span>)</a>
+  </nav>
 </header>
 
+
+<!-- HOME -->
 <div class="hero" id="home">
 
   <h1>የኢትዮጵያ Online Marketplace</h1>
@@ -263,170 +346,696 @@
     ምርቶችን፣ አገልግሎቶችንና ሻጮችን በአንድ ቦታ ያግኙ።
   </p>
 
-  
-<div class="search">
-  <input type="text" id="searchInput" placeholder="ምርት ወይም አገልግሎት ፈልግ...">
-  <button id="searchBtn">ፈልግ</button>
-</div>
-<div class="buttons">
+  <div class="search">
+    <input
+      type="text"
+      id="searchInput"
+      placeholder="ምርት ወይም አገልግሎት ፈልግ..."
+    >
+    <button onclick="searchProducts()">ፈልግ</button>
+  </div>
+
+  <div class="buttons">
     <a href="#products" class="browse">ምርቶችን ተመልከት</a>
     <a href="#sell" class="sell">መሸጥ ጀምር</a>
+  </div>
+
 </div>
-</div>
+
+
+<!-- PRODUCTS -->
 <section id="products">
 
-  
-<div class="categories">
-  <a href="#products">👕 ልብሶች</a>
-  <a href="#products">👟 ጫማዎች</a>
-  <a href="#products">📱 ስልኮችና ኤሌክትሮኒክስ</a>
-  <a href="#products">🏠 የቤት እቃዎች</a>
-  <a href="#products">💄 ውበትና ኮስሞቲክስ</a>
-  <a href="#products">🥦 ምግብና እርሻ</a>
-  <a href="#products">🚗 መኪኖች</a>
-  <a href="#products">💻 ዲጂታል ምርቶች</a>
-  <a href="#products">🧰 ሌሎች ምርቶች</a>
-</div>
-  
 <h2>🔥 ተወዳጅ ምርቶች</h2>
 
-  <div class="cards">
+<div class="categories">
+  <button onclick="filterCategory('all')">ሁሉም</button>
+  <button onclick="filterCategory('clothes')">👕 ልብሶች</button>
+  <button onclick="filterCategory('shoes')">👟 ጫማዎች</button>
+  <button onclick="filterCategory('phone')">📱 ስልኮች</button>
+  <button onclick="filterCategory('home')">🏠 የቤት እቃዎች</button>
+  <button onclick="filterCategory('beauty')">💄 ውበት</button>
+</div>
 
-    <div class="card product">
-      <div class="emoji">👟</div>
-      <h3>Fashion Shoes</h3>
-      <div class="price">2,500 Birr</div>
-      <p>📍 Addis Ababa</p>
-      <p>ሻጭ: Gebeta Shop</p>
-<a class="contact" href="#sell">ሻጩን አግኝ</a>
-      <a class="contact" href="#sell">Contact Seller</a>
-    </div>
 
-    <div class="card product">
-      <div class="emoji">👕</div>
-      <h3>Fashion Clothes</h3>
-      <div class="price">1,800 Birr</div>
-      <p>📍 Bole</p>
-      <p>Seller: Fashion Store</p>
-      <a class="contact" href="#sell">Contact Seller</a>
-    </div>
+<div class="cards" id="productList">
 
-    <div class="card product">
-      <div class="emoji">📱</div>
-      <h3>Smart Phone</h3>
-      <div class="price">15,000 Birr</div>
-      <p>📍 Addis Ababa</p>
-      <p>Seller: Mobile Shop</p>
-      <a class="contact" href="#sell">Contact Seller</a>
-    </div>
-
+  <div class="card product" data-category="shoes">
+    <div class="emoji">👟</div>
+    <h3>Fashion Shoes</h3>
+    <div class="price">2,500 Birr</div>
+    <p>📍 Addis Ababa</p>
+    <p>ሻጭ: Gebeta Shop</p>
+    <button class="add"
+      onclick="addToCart('Fashion Shoes',2500)">
+      🛒 Add to Cart
+    </button>
   </div>
 
-</section>
 
-<section id="services">
-
-  
-<h2>🛠️ አገልግሎቶች</h2>
-  <div class="cards">
-
-    <div class="card">
-      <h3>💻 Digital Services</h3>
-      <p>Website, design, marketing and online services.</p>
-    </div>
-
-    <div class="card">
-      <h3>🚚 Delivery</h3>
-      <p>Find products and connect with sellers in your area.</p>
-    </div>
-
-    <div class="card">
-      <h3>🏪 Local Businesses</h3>
-      <p>Discover businesses and services around Ethiopia.</p>
-    </div>
-
+  <div class="card product" data-category="clothes">
+    <div class="emoji">👕</div>
+    <h3>Fashion Clothes</h3>
+    <div class="price">1,800 Birr</div>
+    <p>📍 Bole</p>
+    <p>Seller: Fashion Store</p>
+    <button class="add"
+      onclick="addToCart('Fashion Clothes',1800)">
+      🛒 Add to Cart
+    </button>
   </div>
 
+
+  <div class="card product" data-category="phone">
+    <div class="emoji">📱</div>
+    <h3>Smart Phone</h3>
+    <div class="price">15,000 Birr</div>
+    <p>📍 Addis Ababa</p>
+    <p>Seller: Mobile Shop</p>
+    <button class="add"
+      onclick="addToCart('Smart Phone',15000)">
+      🛒 Add to Cart
+    </button>
+  </div>
+
+
+  <div class="card product" data-category="home">
+    <div class="emoji">🏠</div>
+    <h3>Home Product</h3>
+    <div class="price">3,500 Birr</div>
+    <p>📍 Addis Ababa</p>
+    <p>Seller: Home Store</p>
+    <button class="add"
+      onclick="addToCart('Home Product',3500)">
+      🛒 Add to Cart
+    </button>
+  </div>
+
+</div>
+
 </section>
 
-<section class="cta" id="sell">
-  <h2>ምርትዎን ይሸጡ</h2>
-  <p>ንግድዎን በGebeta ላይ ያስተዋውቁ።</p>
-  <a href="mailto:contact@gebeta.com">መሸጥ ጀምር</a>
+
+<!-- SELLER UPLOAD -->
+<section id="sell">
+
+<h2>🏪 ምርትዎን በGebeta ይሸጡ</h2>
+
+<div class="form-box">
+
+<label>የምርት ስም</label>
+<input id="productTitle" type="text"
+placeholder="ለምሳሌ፦ Fashion Shoes">
+
+<label>ምድብ</label>
+<select id="productCategory">
+  <option>ልብስ</option>
+  <option>ጫማ</option>
+  <option>ስልክ</option>
+  <option>የቤት እቃ</option>
+  <option>ውበት</option>
+  <option>ሌላ</option>
+</select>
+
+<label>ዋጋ (ETB)</label>
+<input id="productPrice" type="number"
+placeholder="2500">
+
+<label>የምርት ፎቶ</label>
+<input id="productImage" type="file" accept="image/*">
+
+<img id="imagePreview" class="preview">
+
+<label>የሻጩ ስም</label>
+<input id="sellerName" type="text"
+placeholder="የሻጩ ስም">
+
+<label>አድራሻ / Location</label>
+<input id="sellerLocation" type="text"
+placeholder="ለምሳሌ፦ Bole, Addis Ababa">
+
+<label>ስልክ ቁጥር</label>
+<input id="sellerPhone" type="tel"
+placeholder="09XXXXXXXX">
+
+<button onclick="submitProduct()">
+  📤 ምርቱን ልጠፍ
+</button>
+
+<div id="uploadMessage"></div>
+
+</div>
+
 </section>
+
+
+<!-- CART -->
+<section id="cart">
+
+<h2>🛒 የመግዣ ጋሪ</h2>
+
+<div class="cart-box">
+
+<div id="cartItems">
+  <p>ጋሪዎ ባዶ ነው።</p>
+</div>
+
+<div class="total">
+  Total: <span id="cartTotal">0</span> Birr
+</div>
+
+<button
+  class="green"
+  style="width:100%;margin-top:20px;"
+  onclick="openCheckout()">
+  💳 Checkout
+</button>
+
+</div>
+
+</section>
+
+
+<!-- LOGIN -->
+<section id="login">
+
+<h2>🔐 Login / Sign Up</h2>
+
+<div class="form-box">
+
+<label>ስም</label>
+<input id="loginName" type="text"
+placeholder="ስምህን አስገባ">
+
+<label>Email</label>
+<input id="loginEmail" type="email"
+placeholder="example@gmail.com">
+
+<label>ስልክ ቁጥር</label>
+<input id="loginPhone" type="tel"
+placeholder="09XXXXXXXX">
+
+<label>Password</label>
+<input id="loginPassword" type="password"
+placeholder="Password">
+
+<button onclick="loginUser()">
+  🔐 Login / Sign Up
+</button>
+
+<div id="loginMessage"></div>
+
+</div>
+
+</section>
+
+
+<!-- CHECKOUT MODAL -->
+<div id="checkoutModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close"
+onclick="closeCheckout()">×</span>
+
+<h2>💳 Checkout</h2>
+
+<div class="form-box">
+
+<label>ሙሉ ስም</label>
+<input id="customerName" type="text"
+placeholder="ሙሉ ስም">
+
+<label>ስልክ ቁጥር</label>
+<input id="customerPhone" type="tel"
+placeholder="09XXXXXXXX">
+
+<label>የማድረሻ አድራሻ</label>
+<textarea id="customerLocation"
+rows="3"
+placeholder="ከተማ፣ አካባቢ፣ የቤት ቁጥር..."></textarea>
+
+<label>የክፍያ አማራጭ</label>
+
+<select id="paymentMethod">
+  <option value="Cash on Delivery">
+    💵 Cash on Delivery
+  </option>
+
+  <option value="Telebirr">
+    📱 Telebirr
+  </option>
+
+  <option value="Chapa">
+    💳 Chapa
+  </option>
+</select>
+
+<div class="notice">
+  ጠቅላላ ዋጋ፦
+  <strong>
+    <span id="checkoutTotal">0</span> Birr
+  </strong>
+</div>
+
+<button onclick="placeOrder()">
+  ✅ Order Now
+</button>
+
+<div id="orderMessage"></div>
+
+</div>
+
+</div>
+
+</div>
+
 
 <footer>
-  © 2026 Gebeta Ethiopia — Online Marketplace
+© 2026 Gebeta Ethiopia — Online Marketplace
 </footer>
+
+
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-  const categoryLinks = document.querySelectorAll(".categories a");
-  const products = document.querySelectorAll(".card.product");
-  const searchInput = document.getElementById("searchInput");
-  const searchBtn = document.getElementById("searchBtn");
 
-  // 1. የፍለጋ ተግባር (Search Functionality)
-  function filterProducts() {
-    const query = searchInput.value.toLowerCase().trim();
+let cart = [];
 
-    products.forEach(function (product) {
-      const title = product.querySelector("h3").textContent.toLowerCase();
-      if (title.includes(query)) {
-        product.style.display = "";
-      } else {
-        product.style.display = "none";
-      }
+
+/* ADD TO CART */
+
+function addToCart(name, price){
+
+  const existing = cart.find(item => item.name === name);
+
+  if(existing){
+    existing.quantity++;
+  }else{
+    cart.push({
+      name:name,
+      price:price,
+      quantity:1
     });
   }
 
-  // አዝራሩ ሲጫን ወይም Enter ሲነካ መፈለግ እንዲጀምር
-  searchBtn.addEventListener("click", filterProducts);
-  searchInput.addEventListener("keyup", function(e) {
-    if (e.key === "Enter") {
-      filterProducts();
-    }
-  });
+  updateCart();
 
-  // 2. የካቴጎሪ ማጣሪያ (Category Filter)
-  categoryLinks.forEach(function (link) {
-    link.addEventListener("click", function (event) {
-      event.preventDefault();
+  alert(name + " ወደ Cart ተጨምሯል! 🛒");
+}
 
-      const category = link.textContent.toLowerCase().trim();
 
-      products.forEach(function (product) {
-        const name = product.querySelector("h3").textContent.toLowerCase();
-        let show = false;
+/* UPDATE CART */
 
-        if (category.includes("ሌሎች ምርቶች") || category.includes("other products")) {
-          show = true;
-        } else if (category.includes("ልብሶች") || category.includes("fashion")) {
-          show = true;
-        } else if (category.includes("ጫማዎች") || category.includes("shoes")) {
-          show = true;
-        } else if (category.includes("ስልኮች") || category.includes("phones")) {
-          show = true;
-        } else if (category.includes("የቤት እቃዎች") || category.includes("home")) {
-          show = true;
-        } else if (category.includes("ውበት") || category.includes("beauty")) {
-          show = true;
-        } else if (category.includes("ምግብ") || category.includes("food")) {
-          show = true;
-        } else if (category.includes("መኪኖች") || category.includes("cars")) {
-          show = true;
-        } else if (category.includes("ዲጂታል") || category.includes("digital")) {
-          show = true;
-        }
+function updateCart(){
 
-        product.style.display = show ? "" : "none";
-      });
+  const cartItems =
+    document.getElementById("cartItems");
 
-      document.querySelector("#products").scrollIntoView({
-        behavior: "smooth"
-      });
+  const cartCount =
+    document.getElementById("cartCount");
+
+  const cartTotal =
+    document.getElementById("cartTotal");
+
+  let total = 0;
+  let count = 0;
+
+  cartItems.innerHTML = "";
+
+  if(cart.length === 0){
+
+    cartItems.innerHTML =
+      "<p>ጋሪዎ ባዶ ነው።</p>";
+
+  }else{
+
+    cart.forEach((item,index)=>{
+
+      total += item.price * item.quantity;
+      count += item.quantity;
+
+      cartItems.innerHTML += `
+
+      <div class="cart-item">
+
+        <div>
+          <strong>${item.name}</strong>
+          <br>
+          ${item.price.toLocaleString()} Birr
+        </div>
+
+        <div class="qty">
+
+          <button onclick="changeQuantity(${index},-1)">
+            −
+          </button>
+
+          <strong>${item.quantity}</strong>
+
+          <button onclick="changeQuantity(${index},1)">
+            +
+          </button>
+
+        </div>
+
+        <strong>
+          ${(item.price * item.quantity).toLocaleString()}
+          Birr
+        </strong>
+
+        <button
+          onclick="removeItem(${index})">
+          🗑️
+        </button>
+
+      </div>
+
+      `;
     });
+  }
+
+  cartCount.textContent = count;
+
+  cartTotal.textContent =
+    total.toLocaleString();
+}
+
+
+/* QUANTITY */
+
+function changeQuantity(index,change){
+
+  cart[index].quantity += change;
+
+  if(cart[index].quantity <= 0){
+    cart.splice(index,1);
+  }
+
+  updateCart();
+}
+
+
+/* REMOVE */
+
+function removeItem(index){
+
+  cart.splice(index,1);
+
+  updateCart();
+}
+
+
+/* CHECKOUT */
+
+function openCheckout(){
+
+  if(cart.length === 0){
+
+    alert("በመጀመሪያ ምርት ወደ Cart ጨምር።");
+
+    return;
+  }
+
+  document.getElementById("checkoutTotal")
+    .textContent =
+    document.getElementById("cartTotal")
+    .textContent;
+
+  document.getElementById("checkoutModal")
+    .style.display = "block";
+}
+
+
+function closeCheckout(){
+
+  document.getElementById("checkoutModal")
+    .style.display = "none";
+}
+
+
+/* ORDER */
+
+function placeOrder(){
+
+  const name =
+    document.getElementById("customerName").value;
+
+  const phone =
+    document.getElementById("customerPhone").value;
+
+  const location =
+    document.getElementById("customerLocation").value;
+
+  const payment =
+    document.getElementById("paymentMethod").value;
+
+  if(!name || !phone || !location){
+
+    alert("እባክህ ስም፣ ስልክ እና አድራሻ ሙላ።");
+
+    return;
+  }
+
+  document.getElementById("orderMessage").innerHTML = `
+
+    <div class="notice">
+
+      ✅ Order ተቀብሏል!
+
+      <br><br>
+
+      👤 ${name}
+
+      <br>
+
+      📱 ${phone}
+
+      <br>
+
+      📍 ${location}
+
+      <br>
+
+      💳 ${payment}
+
+    </div>
+
+  `;
+
+  cart = [];
+
+  updateCart();
+}
+
+
+/* CATEGORY FILTER */
+
+function filterCategory(category){
+
+  const products =
+    document.querySelectorAll(".product");
+
+  products.forEach(product=>{
+
+    if(category === "all"){
+
+      product.style.display = "";
+
+    }else{
+
+      product.style.display =
+        product.dataset.category === category
+        ? ""
+        : "none";
+    }
+
   });
+}
+
+
+/* SEARCH */
+
+function searchProducts(){
+
+  const query =
+    document.getElementById("searchInput")
+    .value
+    .toLowerCase()
+    .trim();
+
+  const products =
+    document.querySelectorAll(".product");
+
+  products.forEach(product=>{
+
+    const title =
+      product.querySelector("h3")
+      .textContent
+      .toLowerCase();
+
+    product.style.display =
+      title.includes(query)
+      ? ""
+      : "none";
+
+  });
+
+  document.getElementById("products")
+    .scrollIntoView({
+      behavior:"smooth"
+    });
+}
+
+
+/* IMAGE PREVIEW */
+
+document.getElementById("productImage")
+.addEventListener("change",function(){
+
+  const file = this.files[0];
+
+  const preview =
+    document.getElementById("imagePreview");
+
+  if(file){
+
+    preview.src =
+      URL.createObjectURL(file);
+
+    preview.style.display = "block";
+  }
+
 });
+
+
+/* SELLER PRODUCT */
+
+function submitProduct(){
+
+  const title =
+    document.getElementById("productTitle").value;
+
+  const category =
+    document.getElementById("productCategory").value;
+
+  const price =
+    document.getElementById("productPrice").value;
+
+  const seller =
+    document.getElementById("sellerName").value;
+
+  const location =
+    document.getElementById("sellerLocation").value;
+
+  const phone =
+    document.getElementById("sellerPhone").value;
+
+  if(!title || !price || !seller || !location || !phone){
+
+    alert("እባክህ ሁሉንም የሚያስፈልጉ ቦታዎች ሙላፀ");
+
+    return;
+  }
+
+  document.getElementById("uploadMessage")
+    .innerHTML = `
+
+    <div class="notice">
+
+      ✅ ምርቱ በትክክል ተመዝግቧል!
+
+      <br><br>
+
+      🛍️ ${title}
+
+      <br>
+
+      📂 ${category}
+
+      <br>
+
+      💰 ${Number(price).toLocaleString()} Birr
+
+      <br>
+
+      👤 ${seller}
+
+      <br>
+
+      📍 ${location}
+
+      <br>
+
+      📱 ${phone}
+
+    </div>
+
+  `;
+
+}
+
+
+/* LOGIN */
+
+function loginUser(){
+
+  const name =
+    document.getElementById("loginName").value;
+
+  const email =
+    document.getElementById("loginEmail").value;
+
+  const phone =
+    document.getElementById("loginPhone").value;
+
+  const password =
+    document.getElementById("loginPassword").value;
+
+  if(!name || !email || !phone || !password){
+
+    alert("እባክህ ሁሉንም ቦታዎች ሙላ።");
+
+    return;
+  }
+
+  localStorage.setItem(
+    "gebetaUser",
+    name
+  );
+
+  document.getElementById("loginMessage")
+    .innerHTML = `
+
+      <div class="notice">
+
+        ✅ እንኳን ደህና መጣህ
+        <strong>${name}</strong>!
+
+      </div>
+
+    `;
+}
+
+
+/* CLOSE MODAL WHEN OUTSIDE */
+
+window.onclick = function(event){
+
+  const modal =
+    document.getElementById("checkoutModal");
+
+  if(event.target === modal){
+
+    closeCheckout();
+  }
+
+};
+
+
+/* INITIAL */
+
+updateCart();
+
 </script>
+
 </body>
 </html>
