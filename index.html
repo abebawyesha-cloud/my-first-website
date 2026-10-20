@@ -365,6 +365,43 @@
 <footer>
   © 2026 Gebeta Ethiopia — Online Marketplace
 </footer>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const categoryLinks = document.querySelectorAll(".categories a");
+  const products = document.querySelectorAll(".card.product");
 
+  categoryLinks.forEach(function (link) {
+    link.addEventListener("click", function (event) {
+      event.preventDefault();
+
+      const category = link.textContent.toLowerCase();
+
+      products.forEach(function (product) {
+        const name = product.querySelector("h3").textContent.toLowerCase();
+
+        if (
+          category.includes("other products") ||
+          (category.includes("fashion") && name.includes("clothes")) ||
+          (category.includes("shoes") && name.includes("shoes")) ||
+          (category.includes("phones") && name.includes("phone")) ||
+          (category.includes("home") && name.includes("home")) ||
+          (category.includes("beauty") && name.includes("beauty")) ||
+          (category.includes("food") && name.includes("food")) ||
+          (category.includes("cars") && name.includes("car")) ||
+          (category.includes("digital") && name.includes("digital"))
+        ) {
+          product.style.display = "";
+        } else {
+          product.style.display = "none";
+        }
+      });
+
+      document.querySelector("#products").scrollIntoView({
+        behavior: "smooth"
+      });
+    });
+  });
+});
+</script>
 </body>
 </html>
