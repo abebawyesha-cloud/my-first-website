@@ -362,7 +362,32 @@
 document.addEventListener("DOMContentLoaded", function () {
   const categoryLinks = document.querySelectorAll(".categories a");
   const products = document.querySelectorAll(".card.product");
+  const searchInput = document.getElementById("searchInput");
+  const searchBtn = document.getElementById("searchBtn");
 
+  // 1. የፍለጋ ተግባር (Search Functionality)
+  function filterProducts() {
+    const query = searchInput.value.toLowerCase().trim();
+
+    products.forEach(function (product) {
+      const title = product.querySelector("h3").textContent.toLowerCase();
+      if (title.includes(query)) {
+        product.style.display = "";
+      } else {
+        product.style.display = "none";
+      }
+    });
+  }
+
+  // አዝራሩ ሲጫን ወይም Enter ሲነካ መፈለግ እንዲጀምር
+  searchBtn.addEventListener("click", filterProducts);
+  searchInput.addEventListener("keyup", function(e) {
+    if (e.key === "Enter") {
+      filterProducts();
+    }
+  });
+
+  // 2. የካቴጎሪ ማጣሪያ (Category Filter)
   categoryLinks.forEach(function (link) {
     link.addEventListener("click", function (event) {
       event.preventDefault();
@@ -373,23 +398,23 @@ document.addEventListener("DOMContentLoaded", function () {
         const name = product.querySelector("h3").textContent.toLowerCase();
         let show = false;
 
-        if (category.includes("other products")) {
+        if (category.includes("ሌሎች ምርቶች") || category.includes("other products")) {
           show = true;
-        } else if (category.includes("fashion") && name.includes("clothes")) {
+        } else if (category.includes("ልብሶች") || category.includes("fashion")) {
           show = true;
-        } else if (category.includes("shoes") && name.includes("shoes")) {
+        } else if (category.includes("ጫማዎች") || category.includes("shoes")) {
           show = true;
-        } else if (category.includes("phones") && name.includes("phone")) {
+        } else if (category.includes("ስልኮች") || category.includes("phones")) {
           show = true;
-        } else if (category.includes("home") && name.includes("home")) {
+        } else if (category.includes("የቤት እቃዎች") || category.includes("home")) {
           show = true;
-        } else if (category.includes("beauty") && name.includes("beauty")) {
+        } else if (category.includes("ውበት") || category.includes("beauty")) {
           show = true;
-        } else if (category.includes("food") && name.includes("food")) {
+        } else if (category.includes("ምግብ") || category.includes("food")) {
           show = true;
-        } else if (category.includes("cars") && name.includes("car")) {
+        } else if (category.includes("መኪኖች") || category.includes("cars")) {
           show = true;
-        } else if (category.includes("digital") && name.includes("digital")) {
+        } else if (category.includes("ዲጂታል") || category.includes("digital")) {
           show = true;
         }
 
