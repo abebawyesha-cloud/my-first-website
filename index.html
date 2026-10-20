@@ -374,26 +374,33 @@ document.addEventListener("DOMContentLoaded", function () {
     link.addEventListener("click", function (event) {
       event.preventDefault();
 
-      const category = link.textContent.toLowerCase();
+      const category = link.textContent.toLowerCase().trim();
 
       products.forEach(function (product) {
         const name = product.querySelector("h3").textContent.toLowerCase();
+        let show = false;
 
-        if (
-          category.includes("other products") ||
-          (category.includes("fashion") && name.includes("clothes")) ||
-          (category.includes("shoes") && name.includes("shoes")) ||
-          (category.includes("phones") && name.includes("phone")) ||
-          (category.includes("home") && name.includes("home")) ||
-          (category.includes("beauty") && name.includes("beauty")) ||
-          (category.includes("food") && name.includes("food")) ||
-          (category.includes("cars") && name.includes("car")) ||
-          (category.includes("digital") && name.includes("digital"))
-        ) {
-          product.style.display = "";
-        } else {
-          product.style.display = "none";
+        if (category.includes("other products")) {
+          show = true;
+        } else if (category.includes("fashion") && name.includes("clothes")) {
+          show = true;
+        } else if (category.includes("shoes") && name.includes("shoes")) {
+          show = true;
+        } else if (category.includes("phones") && name.includes("phone")) {
+          show = true;
+        } else if (category.includes("home") && name.includes("home")) {
+          show = true;
+        } else if (category.includes("beauty") && name.includes("beauty")) {
+          show = true;
+        } else if (category.includes("food") && name.includes("food")) {
+          show = true;
+        } else if (category.includes("cars") && name.includes("car")) {
+          show = true;
+        } else if (category.includes("digital") && name.includes("digital")) {
+          show = true;
         }
+
+        product.style.display = show ? "" : "none";
       });
 
       document.querySelector("#products").scrollIntoView({
