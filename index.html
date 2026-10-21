@@ -1001,44 +1001,47 @@ async function loadProducts(){
 
   });
 
-}
-function loginUser(){
+async function loginUser() {
+  const name = document.getElementById("loginName").value.trim();
+  const email = document.getElementById("loginEmail").value.trim();
+  const phone = document.getElementById("loginPhone").value.trim();
+  const password = document.getElementById("loginPassword").value;
 
-  const name =
-    document.getElementById("loginName").value;
-
-  const email =
-    document.getElementById("loginEmail").value;
-
-  const phone =
-    document.getElementById("loginPhone").value;
-
-  const password =
-    document.getElementById("loginPassword").value;
-
-  if(!name || !email || !phone || !password){
-
+  if (!name || !email || !phone || !password) {
     alert("እባክህ ሁሉንም ቦታዎች ሙላ።");
-
     return;
   }
 
-  localStorage.setItem(
-    "gebetaUser",
-    name
-  );
+  if (password.length < 6) {
+    alert("Password ቢያንስ 6 ፊደላት ወይም ቁጥሮች መሆን አለበት።");
+    return;
+  }
 
-  document.getElementById("loginMessage")
-    .innerHTML = `
+  const button = document.querySelector("#login button");
+  if (button) button.disabled = true;
 
-      <div class="notice">
+  try {
+    const { data, error } = await supabaseClient.auth.signUp({
+      email: email,
+      password: password,
+      options: {
+        data: {
+          name: name,
+          phone: phone
+        }
+      }
+    });
 
-        ✅ እንኳን ደህና መጣህ
-        <strong>${name}</strong>!
+    if (error) throw error;
 
-      </div>
+    document.getElementById("loginMessage").innerHTML =
+      "<div class='notice'>✅ ምዝገባው ተሳክቷል። ኢሜልህን አረጋግጥ፤ የማረጋገጫ መልዕክት ከተላከልህ አጠናቅቀው።</div>";
 
-    `;
+  } catch (error) {
+    alert("ምዝገባው አልተሳካም፦ " + error.message);
+  } finally {
+    if (button) button.disabled = false;
+  }
 }
 
 
