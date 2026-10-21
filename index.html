@@ -1065,7 +1065,20 @@ window.onclick = function(event){
 /* INITIAL */
 
 updateCart();
+  
+function toggleLanguage() {
+  const btn = document.getElementById("languageBtn");
 
+  if (btn.innerText.includes("English")) {
+    btn.innerText = "🌐 Amharic";
+    document.documentElement.lang = "en";
+    alert("English mode selected");
+  } else {
+    btn.innerText = "🌐 English";
+    document.documentElement.lang = "am";
+    alert("Amharic mode selected");
+  }
+}
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
