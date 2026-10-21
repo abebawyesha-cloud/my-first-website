@@ -906,75 +906,56 @@ document.getElementById("productImage")
 
 });
 
-
 /* SELLER PRODUCT */
 
-function submitProduct(){
+async function submitProduct() {
+  const title = document.getElementById("productTitle").value.trim();
+  const category = document.getElementById("productCategory").value;
+  const price = Number(document.getElementById("productPrice").value);
+  const seller = document.getElementById("sellerName").value.trim();
+  const location = document.getElementById("sellerLocation").value.trim();
+  const phone = document.getElementById("sellerPhone").value.trim();
 
-  const title =
-    document.getElementById("productTitle").value;
-
-  const category =
-    document.getElementById("productCategory").value;
-
-  const price =
-    document.getElementById("productPrice").value;
-
-  const seller =
-    document.getElementById("sellerName").value;
-
-  const location =
-    document.getElementById("sellerLocation").value;
-
-  const phone =
-    document.getElementById("sellerPhone").value;
-
-  if(!title || !price || !seller || !location || !phone){
-
-    alert("እባክህ ሁሉንም የሚያስፈልጉ ቦታዎች ሙላፀ");
-
+  if (!title || !price || !seller || !location || !phone) {
+    alert("እባክህ ሁሉንም የሚያስፈልጉ ቦታዎች ሙላ።");
     return;
   }
 
-  document.getElementById("uploadMessage")
-    .innerHTML = `
+  if (!window.supabase || typeof supabaseClient === "undefined") {
+    alert("Supabase ግንኙነት አልተዘጋጀም።");
+    return;
+  }
 
-    <div class="notice">
+  const { data, error } = await supabaseClient
+    .from("products")
+    .insert([{
+      title: title,
+      category: category,
+      price: price,
+      image_url: "",
+      seller_name: seller,
+      location: location,
+      phone: phone
+    }])
+    .select();
 
-      ✅ ምርቱ በትክክል ተመዝግቧል!
+  if (error) {
+    console.error("Product insert error:", error);
+    alert("ምርቱ አልተመዘገበም። ስህተት: " + error.message);
+    return;
+  }
 
-      <br><br>
-
-      🛍️ ${title}
-
-      <br>
-
-      📂 ${category}
-
-      <br>
-
-      💰 ${Number(price).toLocaleString()} Birr
-
-      <br>
-
-      👤 ${seller}
-
-      <br>
-
-      📍 ${location}
-
-      <br>
-
-      📱 ${phone}
-
-    </div>
-
-  `;
-
+  document.getElementById("uploadMessage").innerHTML =
+    `<div class="notice">
+      ✅ ምርቱ በSupabase ዳታቤዝ ውስጥ ተመዝግቧል!
+      <br><br>🛍️ ${title}
+      <br>📂 ${category}
+      <br>💰 ${price.toLocaleString()} Birr
+      <br>👤 ${seller}
+      <br>📍 ${location}
+      <br>📱 ${phone}
+    </div>`;
 }
-
-
-/* LOGIN */
 
 function loginUser(){
 
