@@ -956,7 +956,52 @@ async function submitProduct() {
       <br>📱 ${phone}
     </div>`;
 }
+/* LOAD PRODUCTS FROM SUPABASE */
 
+async function loadProducts(){
+
+  const { data, error } =
+    await supabaseClient
+      .from("products")
+      .select("*")
+      .order("id", { ascending:false });
+
+  if(error){
+    console.error("Products loading error:", error);
+    return;
+  }
+
+  const productList =
+    document.getElementById("productList");
+
+  if(!productList) return;
+
+  data.forEach(product => {
+
+    const card =
+      document.createElement("div");
+
+    card.className = "product";
+
+    card.setAttribute(
+      "data-category",
+      product.category
+    );
+
+    card.innerHTML = `
+      <h3>${product.title}</h3>
+      <p>📂 ${product.category}</p>
+      <p>💰 ${Number(product.price).toLocaleString()} Birr</p>
+      <p>👤 ${product.seller_name}</p>
+      <p>📍 ${product.location}</p>
+      <p>📱 ${product.phone}</p>
+    `;
+
+    productList.prepend(card);
+
+  });
+
+}
 function loginUser(){
 
   const name =
