@@ -412,11 +412,12 @@ categoryButtons.forEach(function (button, index) {
       } catch (error) {
         console.error("የምርት ምዝገባ ስህተት:", error);
         alert("ምርቱ አልተመዘገበም። የSupabase አምዶችንና policies እንፈትሻለን።");
-      } finally {
+            } finally {
         publishButton.disabled = false;
         publishButton.textContent = "Publish";
       }
     });
+  }
 
   // 4. የLogin በተን
   const loginButton = Array.from(
