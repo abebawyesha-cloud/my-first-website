@@ -305,17 +305,55 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
-  // 2. የምርት ምድብ በተኖች
-  const categoryButtons = document.querySelectorAll(
-    "section.space-y-4 button"
-  );
+  
+// 2. የምርት ምድብ በተኖች
+const categoryButtons = document.querySelectorAll(
+  "section.space-y-4:first-of-type button"
+);
 
-  categoryButtons.forEach(function (button) {
-    button.addEventListener("click", function () {
-      alert("የምድብ ማጣሪያውን በቀጣይ እናስተካክላለን።");
+const productCards = document.querySelectorAll(
+  "#products .grid > div"
+);
+
+categoryButtons.forEach(function (button, index) {
+  button.addEventListener("click", function () {
+
+    productCards.forEach(function (card) {
+      card.style.display = "block";
+    });
+
+    if (index === 0) {
+      return;
+    }
+
+    productCards.forEach(function (card) {
+      const productName = card
+        .querySelector("h3")
+        .textContent
+        .toLowerCase();
+
+      if (index === 1 && !productName.includes("ልብስ")) {
+        card.style.display = "none";
+      }
+
+      if (index === 2 && !productName.includes("ጫማ")) {
+        card.style.display = "none";
+      }
+
+      if (index === 3 && !productName.includes("ስልክ")) {
+        card.style.display = "none";
+      }
+
+      if (index === 4 && !productName.includes("ቤት")) {
+        card.style.display = "none";
+      }
+
+      if (index === 5 && !productName.includes("ውበት")) {
+        card.style.display = "none";
+      }
     });
   });
-
+});
   // 3. የምርት ምዝገባ በተን
   const publishButton = Array.from(
     document.querySelectorAll("#sell button")
