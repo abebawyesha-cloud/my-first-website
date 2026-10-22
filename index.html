@@ -409,10 +409,10 @@ categoryButtons.forEach(function (button, index) {
 
         alert("ምርቱ በSupabase ተመዝግቧል! 🎉");
         console.log("የተመዘገበው ምርት:", data);
-      } catch (error) {
+            } catch (error) {
         console.error("የምርት ምዝገባ ስህተት:", error);
-     alert("የምዝገባ ስህተት: " + error.message);   ("ምርቱ አልተመዘገበም። የSupabase አምዶችንና policies እንፈትሻለን።");
-            } finally {
+        alert("የምዝገባ ስህተት: " + (error.message || String(error)));
+      } finally {
         publishButton.disabled = false;
         publishButton.textContent = "Publish";
       }
