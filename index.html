@@ -364,7 +364,7 @@ categoryButtons.forEach(function (button, index) {
     });
   });
 });
-  // 3. የምርት ምዝገባ በተን
+  // 3. የምርት ምዝገባ ከSupabase ጋር
   const publishButton = Array.from(
     document.querySelectorAll("#sell button")
   ).find(function (button) {
@@ -372,6 +372,52 @@ categoryButtons.forEach(function (button, index) {
   });
 
   if (publishButton) {
+    publishButton.addEventListener("click", async function (event) {
+      event.preventDefault();
+
+      const inputs = document.querySelectorAll("#sell input, #sell select");
+
+      const title = inputs[0]?.value?.trim();
+      const category = inputs[1]?.value?.trim();
+      const price = Number(inputs[2]?.value);
+      const imageInput = inputs[3];
+      const location = inputs[4]?.value?.trim();
+
+      if (!title || !category || !price || price <= 0) {
+        alert("እባክህ የምርት ስም፣ ምድብ እና ትክክለኛ ዋጋ አስገባ።");
+        return;
+      }
+
+      publishButton.disabled = true;
+      publishButton.textContent = "በመመዝገብ ላይ...";
+
+      try {
+        const { data, error } = await supabase
+          .from("products")
+          .insert([{
+            title: title,
+            category: category,
+            price: price,
+            image_url: imageInput?.files?.[0]?.name || "",
+            seller_name: "",
+            location: location || "",
+            phone: ""
+          }])
+          .select();
+
+        if (error) throw error;
+
+        alert("ምርቱ በSupabase ተመዝግቧል! 🎉");
+        console.log("የተመዘገበው ምርት:", data);
+      } catch (error) {
+        console.error("የምርት ምዝገባ ስህተት:", error);
+        alert("ምርቱ አልተመዘገበም። የSupabase አምዶችንና policies እንፈትሻለን።");
+      } finally {
+        publishButton.disabled = false;
+        publishButton.textContent = "Publish";
+      }
+    });
+  }   {
     publishButton.addEventListener("click", function () {
       alert("የምርት ምዝገባውን ከSupabase ጋር በቀጣይ እናገናኛለን።");
     });
