@@ -285,5 +285,61 @@
         </a>
     </nav>
 
-</body>
-</html>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  // 1. የምርት ካርቶችን ወደ ካርት መጨመር
+  const cartCount = document.querySelector(
+    "header .fa-cart-shopping"
+  )?.parentElement?.querySelector("span");
+
+  let cart = 0;
+
+  document.querySelectorAll(
+    '#products button'
+  ).forEach(function (button) {
+    button.addEventListener("click", function () {
+      cart++;
+      if (cartCount) cartCount.textContent = cart;
+      alert("ምርቱ ወደ ካርት ተጨምሯል!");
+    });
+  });
+
+  // 2. የምርት ምድብ በተኖች
+  const categoryButtons = document.querySelectorAll(
+    "section.space-y-4 button"
+  );
+
+  categoryButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      alert("የምድብ ማጣሪያውን በቀጣይ እናስተካክላለን።");
+    });
+  });
+
+  // 3. የምርት ምዝገባ በተን
+  const publishButton = Array.from(
+    document.querySelectorAll("#sell button")
+  ).find(function (button) {
+    return button.textContent.includes("Publish");
+  });
+
+  if (publishButton) {
+    publishButton.addEventListener("click", function () {
+      alert("የምርት ምዝገባውን ከSupabase ጋር በቀጣይ እናገናኛለን።");
+    });
+  }
+
+  // 4. የLogin በተን
+  const loginButton = Array.from(
+    document.querySelectorAll("#sell button")
+  ).find(function (button) {
+    return button.textContent.includes("Login");
+  });
+
+  if (loginButton) {
+    loginButton.addEventListener("click", function () {
+      alert("የLogin ስርዓቱን ከSupabase Auth ጋር በቀጣይ እናገናኛለን።");
+    });
+  }
+});
+</script>
