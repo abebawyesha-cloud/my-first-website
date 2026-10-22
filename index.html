@@ -392,8 +392,8 @@ categoryButtons.forEach(function (button, index) {
       publishButton.textContent = "በመመዝገብ ላይ...";
 
       try {
-        const { data, error } = await supabase
-          .from("products")
+        const { data, error } = await supabaseClient
+  .from("products")
           .insert([{
             title: title,
             category: category,
