@@ -411,7 +411,7 @@ categoryButtons.forEach(function (button, index) {
         console.log("የተመዘገበው ምርት:", data);
       } catch (error) {
         console.error("የምርት ምዝገባ ስህተት:", error);
-        alert("ምርቱ አልተመዘገበም። የSupabase አምዶችንና policies እንፈትሻለን።");
+     alert("የምዝገባ ስህተት: " + error.message);   ("ምርቱ አልተመዘገበም። የSupabase አምዶችንና policies እንፈትሻለን።");
             } finally {
         publishButton.disabled = false;
         publishButton.textContent = "Publish";
