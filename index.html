@@ -324,31 +324,133 @@ const supabaseClient = window.supabase.createClient(
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   
-  // 1. ሁሉንም የምርት ካርቶች ወደ ካርት መጨመር
-  const cartCount = document.querySelector(
-    "header .fa-cart-shopping"
-  )?.parentElement?.querySelector("span");
+  // 1. GEBETA SHOPPING CART
+const cartCount = document.getElementById("cartCount");
+const cartPanel = document.getElementById("cartPanel");
+const cartItemsBox = document.getElementById("cartItems");
+const cartTotalBox = document.getElementById("cartTotal");
+const cartButton = document.getElementById("cartButton");
+const closeCartButton = document.getElementById("closeCartButton");
+const checkoutButton = document.getElementById("checkoutButton");
 
-  let cart = 0;
+let cart = [];
 
-  const productsSection = document.getElementById("products");
+function renderCart() {
+  if (!cartItemsBox || !cartTotalBox) return;
 
-  if (productsSection) {
-    productsSection.addEventListener("click", function (event) {
-      const button = event.target.closest("button");
+  cartItemsBox.replaceChildren();
 
-      if (!button || !productsSection.contains(button)) return;
-
-      if (
-        button.textContent.includes("ካርት") ||
-        button.querySelector(".fa-cart-plus")
-      ) {
-        cart++;
-        if (cartCount) cartCount.textContent = cart;
-        alert("ምርቱ ወደ ካርት ተጨምሯል! 🛒");
-      }
-    });
+  if (cart.length === 0) {
+    const emptyMessage = document.createElement("p");
+    emptyMessage.className = "text-gray-500";
+    emptyMessage.textContent = "ገና ምርት አልመረጥክም።";
+    cartItemsBox.appendChild(emptyMessage);
   }
+
+  let total = 0;
+
+  cart.forEach((item, index) => {
+    total += item.price;
+
+    const row = document.createElement("div");
+    row.className =
+      "flex items-center justify-between gap-3 border-b pb-3";
+
+    const details = document.createElement("div");
+
+    const name = document.createElement("p");
+    name.className = "font-semibold text-slate-800";
+    name.textContent = item.name;
+
+    const price = document.createElement("p");
+    price.className = "text-sm text-emerald-700";
+    price.textContent = item.price.toLocaleString() + " ETB";
+
+    details.append(name, price);
+
+    const removeButton = document.createElement("button");
+    removeButton.type = "button";
+    removeButton.className = "text-red-600 font-bold px-2";
+    removeButton.textContent = "ሰርዝ";
+    removeButton.addEventListener("click", function () {
+      cart.splice(index, 1);
+      renderCart();
+    });
+
+    row.append(details, removeButton);
+    cartItemsBox.appendChild(row);
+  });
+
+  if (cartCount) cartCount.textContent = cart.length;
+  cartTotalBox.textContent = total.toLocaleString() + " ETB";
+}
+
+if (cartButton && cartPanel) {
+  cartButton.addEventListener("click", function () {
+    cartPanel.classList.toggle("hidden");
+    renderCart();
+  });
+}
+
+if (closeCartButton && cartPanel) {
+  closeCartButton.addEventListener("click", function () {
+    cartPanel.classList.add("hidden");
+  });
+}
+
+const productsSection = document.getElementById("products");
+
+if (productsSection) {
+  productsSection.addEventListener("click", function (event) {
+    const button = event.target.closest("button");
+    if (!button || !productsSection.contains(button)) return;
+
+    if (
+      button.textContent.includes("ካርት") ||
+      button.querySelector(".fa-cart-plus")
+    ) {
+      const card = button.closest(".bg-white");
+
+      if (!card) {
+        alert("የምርቱን ካርድ ማግኘት አልተቻለም።");
+        return;
+      }
+
+      const titleElement = card.querySelector("h3");
+      const priceElement = Array.from(card.querySelectorAll("*"))
+        .find(el =>
+          el.children.length === 0 &&
+          /ETB|ብር/.test(el.textContent)
+        );
+
+      const name = titleElement?.textContent.trim();
+      const priceText = priceElement?.textContent || "";
+      const price = Number(priceText.replace(/[^0-9.]/g, ""));
+
+      if (!name || !Number.isFinite(price) || price <= 0) {
+        alert("የምርቱ ስም ወይም ዋጋ አልተገኘም።");
+        return;
+      }
+
+      cart.push({ name, price });
+      renderCart();
+      alert("ምርቱ ወደ ካርት ተጨምሯል! 🛒");
+    }
+  });
+}
+
+if (checkoutButton) {
+  checkoutButton.addEventListener("click", function () {
+    if (cart.length === 0) {
+      alert("እባክህ መጀመሪያ ምርት ወደ ካርት ጨምር።");
+      return;
+    }
+
+    alert("የክፍያ ስርዓቱ ገና አልተገናኘም። ቀጣዩ ደረጃ የክፍያ ማዘጋጀት ነው።");
+  });
+}
+
+renderCart();
   
 // 2. የምርት ምድብ በተኖች
 const categoryButtons = document.querySelectorAll(
