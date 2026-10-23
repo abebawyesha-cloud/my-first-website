@@ -671,70 +671,7 @@ console.log("የተመዘገበው ምርት:", data);
 
       productList.prepend(card);
     });
-  }
-
-  // 5. Supabase ላይ ያሉ ምርቶችን ወደ Website ማምጣት
-  async function loadProducts() {
-    const productList = document.getElementById("productList");
-
-    if (!productList) return;
-
-    const { data, error } = await supabaseClient
-      .from("products")
-      .select("*")
-      .order("id", { ascending: false });
-
-    if (error) {
-      console.error("ምርቶችን ማምጣት አልተቻለም:", error);
-      return;
-    }
-
-    data.forEach(function (product) {
-      const card = document.createElement("div");
-
-      card.className =
-        "bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden hover:shadow-lg transition group";
-
-      card.innerHTML = `
-        <div class="h-44 bg-slate-50 relative overflow-hidden flex items-center justify-center p-4">
-          ${
-            product.image_url
-              ? `<img src="${product.image_url}" alt="${product.title}" class="max-h-full object-contain group-hover:scale-105 transition duration-300">`
-              : `<i class="fa-solid fa-image text-5xl text-slate-300"></i>`
-          }
-        </div>
-
-        <div class="p-4 space-y-2">
-          <h3 class="font-bold text-slate-800 text-sm line-clamp-1">
-            ${product.title || "ምርት"}
-          </h3>
-
-          <p class="text-emerald-700 font-extrabold text-base">
-            ${Number(product.price || 0).toLocaleString()} ETB
-          </p>
-
-          <div class="text-[11px] text-slate-500 space-y-0.5">
-            <p class="flex items-center gap-1">
-              <i class="fa-solid fa-location-dot text-rose-500"></i>
-              ${product.location || "ኢትዮጵያ"}
-            </p>
-
-            <p class="flex items-center gap-1">
-              <i class="fa-solid fa-store text-emerald-600"></i>
-              ${product.seller_name || "Gebeta Seller"}
-            </p>
-          </div>
-
-          <button class="w-full mt-2 bg-emerald-800 hover:bg-emerald-900 text-white font-medium py-2 rounded-xl text-xs">
-            <i class="fa-solid fa-cart-plus"></i>
-            ወደ ካርት ጨምር
-          </button>
-        </div>
-      `;
-
-      productList.prepend(card);
-    });
-  }
+  
 
   loadProducts();
 </script>
