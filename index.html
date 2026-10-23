@@ -655,10 +655,11 @@ console.log("የተመዘገበው ምርት:", data);
               <i class="fa-solid fa-store text-emerald-600"></i>
               ${product.seller_name || "Gebeta Seller"}
             </p>
-            <p class="flex items-center gap-1">
-  <i class="fa-solid fa-phone text-blue-600"></i>
-  ${product.phone || "ስልክ የለም"}
-</p>
+            <a href="tel:${product.phone || ''}"
+   class="flex items-center justify-center gap-2 w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-xl text-xs font-bold">
+  <i class="fa-solid fa-phone"></i>
+  ሻጩን ደውል
+</a>
           </div>
 
           <button class="w-full mt-2 bg-emerald-800 hover:bg-emerald-900 text-white font-medium py-2 rounded-xl text-xs">
