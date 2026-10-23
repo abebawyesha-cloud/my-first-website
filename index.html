@@ -297,23 +297,32 @@ const supabaseClient = window.supabase.createClient(
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  // 1. የምርት ካርቶችን ወደ ካርት መጨመር
+  
+  // 1. ሁሉንም የምርት ካርቶች ወደ ካርት መጨመር
   const cartCount = document.querySelector(
     "header .fa-cart-shopping"
   )?.parentElement?.querySelector("span");
 
   let cart = 0;
 
-  document.querySelectorAll(
-    '#products button'
-  ).forEach(function (button) {
-    button.addEventListener("click", function () {
-      cart++;
-      if (cartCount) cartCount.textContent = cart;
-      alert("ምርቱ ወደ ካርት ተጨምሯል!");
-    });
-  });
+  const productsSection = document.getElementById("products");
 
+  if (productsSection) {
+    productsSection.addEventListener("click", function (event) {
+      const button = event.target.closest("button");
+
+      if (!button || !productsSection.contains(button)) return;
+
+      if (
+        button.textContent.includes("ካርት") ||
+        button.querySelector(".fa-cart-plus")
+      ) {
+        cart++;
+        if (cartCount) cartCount.textContent = cart;
+        alert("ምርቱ ወደ ካርት ተጨምሯል! 🛒");
+      }
+    });
+  }
   
 // 2. የምርት ምድብ በተኖች
 const categoryButtons = document.querySelectorAll(
