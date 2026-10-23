@@ -446,7 +446,14 @@ if (checkoutButton) {
       return;
     }
 
-    alert("የክፍያ ስርዓቱ ገና አልተገናኘም። ቀጣዩ ደረጃ የክፍያ ማዘጋጀት ነው።");
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
+
+    alert(
+      "የGebeta Telebirr ክፍያ\n\n" +
+      "ጠቅላላ ዋጋ፦ " + total.toLocaleString() + " ብር\n\n" +
+      "እባክዎ ከመክፈልዎ በፊት ከሻጩ የTelebirr ቁጥር ያግኙ።\n\n" +
+      "ክፍያው በሻጩ እስኪረጋገጥ ድረስ ትዕዛዙ አይረጋገጥም።"
+    );
   });
 }
 
