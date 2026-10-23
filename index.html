@@ -391,23 +391,47 @@ categoryButtons.forEach(function (button, index) {
       publishButton.textContent = "በመመዝገብ ላይ...";
 
       try {
-        const { data, error } = await supabaseClient
+          
+        const imageFile = imageInput?.files?.[0];
+
+let imageUrl = "";
+
+if (imageFile) {
+  const fileName =
+    Date.now() + "-" + imageFile.name.replace(/\s+/g, "-");
+
+  const { error: uploadError } = await supabaseClient
+    .storage
+    .from("product-image")
+    .upload(fileName, imageFile);
+
+  if (uploadError) throw uploadError;
+
+  const { data: publicUrlData } = supabaseClient
+    .storage
+    .from("product-image")
+    .getPublicUrl(fileName);
+
+  imageUrl = publicUrlData.publicUrl;
+}
+
+const { data, error } = await supabaseClient
   .from("products")
-          .insert([{
-            title: title,
-            category: category,
-            price: price,
-            image_url: imageInput?.files?.[0]?.name || "",
-            seller_name: "",
-            location: location || "",
-            phone: ""
-          }])
-          .select();
+  .insert([{
+    title: title,
+    category: category,
+    price: price,
+    image_url: imageUrl,
+    seller_name: "",
+    location: location || "",
+    phone: ""
+  }])
+  .select();
 
-        if (error) throw error;
+if (error) throw error;
 
-        alert("ምርቱ በSupabase ተመዝግቧል! 🎉");
-        console.log("የተመዘገበው ምርት:", data);
+alert("ምርቱና ፎቶው በSupabase ተመዝግቧል! 🎉");
+console.log("የተመዘገበው ምርት:", data);
             } catch (error) {
         console.error("የምርት ምዝገባ ስህተት:", error);
         alert("የምዝገባ ስህተት: " + (error.message || String(error)));
