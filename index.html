@@ -449,11 +449,12 @@ if (checkoutButton) {
     const total = cart.reduce((sum, item) => sum + item.price, 0);
 
     alert(
-      "የGebeta Telebirr ክፍያ\n\n" +
-      "ጠቅላላ ዋጋ፦ " + total.toLocaleString() + " ብር\n\n" +
-      "የእኔ Telebirr ቁጥር፦ 09XXXXXXXX\n\n" +
-      "ክፍያው በሻጩ እስኪረጋገጥ ድረስ ትዕዛዙ አይረጋገጥም።"
-    );
+  "የሻጭ ክፍያ መረጃ\n\n" +
+  "ጠቅላላ ዋጋ፦ " + total.toLocaleString() + " ብር\n\n" +
+  "⚠️ ክፍያው በቀጥታ ለሻጩ ነው።\n\n" +
+  "የሻጩን ስልክ በምርቱ ላይ ተመልከትና ሻጩን አነጋግር።\n\n" +
+  "Gebeta ክፍያ አይሰበስብም።"
+);
   });
 }
 
