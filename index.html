@@ -518,13 +518,18 @@ categoryButtons.forEach(function (button, index) {
     publishButton.addEventListener("click", async function (event) {
       event.preventDefault();
 
-      const inputs = document.querySelectorAll("#sell input, #sell select");
+    // 🟢 የምርት መረጃ
+const inputs = document.querySelectorAll("#sell input, #sell select");
 
-      const title = inputs[0]?.value?.trim();
-      const category = inputs[1]?.value?.trim();
-      const price = Number(inputs[2]?.value);
-      const imageInput = inputs[3];
-      const location = inputs[4]?.value?.trim();
+const title = inputs[0]?.value?.trim();
+const category = inputs[1]?.value?.trim();
+const price = Number(inputs[2]?.value);
+const imageInput = inputs[3];
+const location = inputs[4]?.value?.trim();
+
+// 🟢 የሻጭ መረጃ
+const sellerName = document.getElementById("sellerName").value.trim();
+const phone = document.getElementById("sellerPhone").value.trim();
 
       if (!title || !category || !price || price <= 0) {
         alert("እባክህ የምርት ስም፣ ምድብ እና ትክክለኛ ዋጋ አስገባ።");
