@@ -265,15 +265,33 @@ const supabaseClient = window.supabase.createClient(
         placeholder="የሻጭ ስም አስገባ"
         class="w-full p-2.5 rounded-xl border border-slate-200">
 </div>
+<!-- የሻጭ ስም -->
+<div>
+    <label class="block font-medium text-slate-700 mb-1">የሻጭ ስም</label>
+    <input id="sellerName" type="text" placeholder="የሻጭ ስም አስገባ"
+        class="w-full p-2.5 rounded-xl border border-slate-200">
+</div>
 
 <!-- የሻጭ ስልክ -->
 <div>
     <label class="block font-medium text-slate-700 mb-1">የሻጭ ስልክ</label>
-    <input id="sellerPhone" type="tel"
-        placeholder="09xxxxxxxx"
+    <input id="sellerPhone" type="tel" placeholder="09xxxxxxxx"
         class="w-full p-2.5 rounded-xl border border-slate-200">
 </div>
-                    </button>
+
+<!-- የምርት ቦታ -->
+<div>
+    <label class="block font-medium text-slate-700 mb-1">የምርት ቦታ</label>
+    <input type="text" placeholder="ቦሌ፣ አዲስ አበባ"
+        class="w-full p-2.5 rounded-xl border border-slate-200">
+</div>
+
+<!-- Publish Button -->
+<button type="button"
+    class="w-full bg-emerald-700 hover:bg-emerald-800 text-white font-bold py-3 rounded-xl">
+    Publish
+</button>
+
                 </form>
             </div>
 
