@@ -566,9 +566,9 @@ const { data, error } = await supabaseClient
     category: category,
     price: price,
     image_url: imageUrl,
-    seller_name: "",
-    location: location || "",
-    phone: ""
+seller_name: sellerName,
+location: location || "",
+phone: phone
   }])
   .select();
 
