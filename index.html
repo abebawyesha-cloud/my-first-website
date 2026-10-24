@@ -1,5 +1,42 @@
 <!DOCTYPE html>
+<html !DOCTYPE html>
 <html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google-site-verification" content="-ZRZa4k_rAAL8oVz1htiQOv1bxRkYaMfkjamonw9EM0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gebeta - Ethiopian Online Marketplace</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+    body {
+        font-family: 'Poppins', 'Noto Sans Ethiopic', sans-serif;
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+</style>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+   <script>
+const SUPABASE_URL = "https://wxfemvzxxglxbvvsycro.supabase.co";
+const SUPABASE_KEY = "sb_publishable_tVaLVblqjiyvT4eujw_O4w_v4rJrBHS ";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+</script> 
+</head>
 <head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="-ZRZa4k_rAAL8oVz1htiQOv1bxRkYaMfkjamonw9EM0" />
@@ -38,47 +75,83 @@ const supabaseClient = window.supabase.createClient(
 </head>
 <body class="bg-slate-100 text-slate-800 pb-20 md:pb-8">
 
-    <!-- Header Section -->
-    <header class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-            <!-- Logo -->
-            <div class="flex items-center gap-2 cursor-pointer">
-                <div class="bg-amber-400 p-2 rounded-xl text-emerald-950 font-bold">
-                    <i class="fa-solid fa-store text-xl"></i>
-                </div>
-                <span class="text-2xl font-extrabold tracking-wide text-amber-400">Gebeta<span class="text-white text-xs block -mt-1 font-normal opacity-80">ገበታ ኢትዮጵያ</span></span>
-            </div>
+    
+<!-- Header Section -->
+<header id="top" class="bg-emerald-900 text-white sticky top-0 z-50 shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap md:flex-nowrap items-center justify-between gap-3">
 
-            <!-- Desktop Search Bar -->
-            <div class="hidden md:flex flex-1 max-w-xl mx-4">
-                <div class="relative w-full">
-                    <input type="text" placeholder="ምርቶችን ወይም አገልግሎቶችን ይፈልጉ..." class="w-full pl-10 pr-4 py-2.5 rounded-full text-slate-900 bg-emerald-950/40 border border-emerald-700/50 focus:outline-none focus:border-amber-400 text-sm placeholder-slate-300 transition">
-                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-300 text-sm"></i>
-                </div>
-            </div>
+    <!-- Gebeta Logo -->
+    <a href="#top" class="flex items-center gap-2 shrink-0">
+      <div class="bg-amber-400 p-2 rounded-xl text-emerald-950">
+        <i class="fa-solid fa-store text-xl"></i>
+      </div>
+      <span class="text-2xl font-extrabold tracking-wide text-amber-400">
+        Gebeta
+        <span class="text-white text-xs block -mt-1 font-normal opacity-80">
+          ገበታ ኢትዮጵያ
+        </span>
+      </span>
+    </a>
 
-            <!-- Language & Navigation Actions -->
-            <div class="flex items-center gap-3">
-                <button class="bg-emerald-800 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-full text-xs font-medium flex items-center gap-1.5 border border-emerald-600">
-                    <i class="fa-solid fa-globe text-amber-400"></i> አማርኛ / EN
-                </button>
-                <button id="cartButton" type="button"
-    class="relative cursor-pointer bg-emerald-800 p-2.5 rounded-full text-amber-400 border border-emerald-700">
-    <i class="fa-solid fa-cart-shopping"></i>
-    <span id="cartCount"
-        class="absolute -top-1 -right-1 bg-amber-400 text-emerald-950 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
-</button>
-            </div>
-        </div>
+    <!-- Desktop Navigation -->
+    <nav class="hidden lg:flex items-center gap-4 text-sm font-semibold">
+      <a href="#top" class="hover:text-amber-400">መነሻ</a>
+      <a href="#products" class="hover:text-amber-400">ምርቶች</a>
+      <a href="#sell" class="hover:text-amber-400">መሸጥ ጀምር</a>
+    </nav>
 
-        <!-- Mobile Search Bar -->
-        <div class="px-4 pb-3 md:hidden">
-            <div class="relative w-full">
-                <input type="text" placeholder="ምርቶችን ወይም አገልግሎቶችን ይፈልጉ..." class="w-full pl-10 pr-4 py-2 rounded-full text-slate-900 bg-emerald-950/50 border border-emerald-700/50 focus:outline-none focus:border-amber-400 text-xs text-white placeholder-slate-300">
-                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-2.5 text-slate-300 text-xs"></i>
-            </div>
-        </div>
-    </header>
+    <!-- Desktop Search -->
+    <div class="hidden md:flex flex-1 max-w-md">
+      <div class="relative w-full">
+        <input
+          id="desktopSearch"
+          type="search"
+          placeholder="ምርቶችን ፈልግ..."
+          class="w-full pl-10 pr-4 py-2.5 rounded-full text-slate-900 bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm"
+        >
+        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3.5 text-slate-500 text-sm"></i>
+      </div>
+    </div>
+
+    <!-- Header Actions -->
+    <div class="flex items-center gap-2">
+      <a href="#sell"
+         class="hidden sm:inline-flex bg-amber-400 hover:bg-amber-500 text-emerald-950 px-3 py-2 rounded-full text-xs font-bold">
+        <i class="fa-solid fa-store mr-1"></i>
+        ምርት ሽጥ
+      </a>
+
+      <button type="button"
+        class="bg-emerald-800 hover:bg-emerald-700 text-white px-3 py-2 rounded-full text-xs font-medium border border-emerald-600">
+        <i class="fa-solid fa-globe text-amber-400 mr-1"></i>
+        አማርኛ / EN
+      </button>
+
+      <button id="cartButton" type="button"
+        aria-label="የግዢ ካርት ክፈት"
+        class="relative bg-emerald-800 hover:bg-emerald-700 p-2.5 rounded-full text-amber-400 border border-emerald-700">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cartCount"
+          class="absolute -top-1 -right-1 bg-amber-400 text-emerald-950 text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">0</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Search -->
+  <div class="px-4 pb-3 md:hidden">
+    <div class="relative w-full">
+      <input
+        id="mobileSearch"
+        type="search"
+        placeholder="ምርቶችን ወይም ሻጮችን ፈልግ..."
+        class="w-full pl-10 pr-4 py-2.5 rounded-full text-slate-900 bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-amber-400 text-sm"
+      >
+      <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-3 text-slate-500 text-sm"></i>
+    </div>
+  </div>
+</header>
+<!-- End Header Section -->
+
 
     <!-- GEBETA CART PANEL -->
 <div id="cartPanel"
@@ -108,8 +181,7 @@ const supabaseClient = window.supabase.createClient(
     <main class="max-w-7xl mx-auto px-4 py-6 space-y-8">
 
         <!-- Hero / Banner Section -->
-        <section class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-emerald-900 via-emerald-800 to-slate-900 text-white shadow-xl">
-            <div class="p-6 md:p-12 max-w-xl relative z-10">
+        <section class="relative rounded-3xl overflow-hidden bg-gradient-to-r from-emerald-900 via-emerald-800 to-slate-900 tex        <div class="p-6 md:p-12 max-w-xl relative z-10">
                 <span class="bg-amber-400/20 text-amber-300 border border-amber-400/30 text-xs px-3 py-1 rounded-full font-semibold">ከኢትዮጵያ ምርጥ አምራቾች</span>
                 <h1 class="text-3xl md:text-5xl font-extrabold mt-3 leading-tight">ምርቶችን፣ አገልግሎቶችን እና ሻጮችን በአንድ ቦታ!</h1>
                 <p class="mt-3 text-slate-200 text-sm md:text-base">የሚፈልጉትን ማንኛውንም አይነት ገበያ በቀላሉ ያግኙ ወይም አሁኑኑ ምርትዎን መሸጥ ይጀምሩ።</p>
