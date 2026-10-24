@@ -811,4 +811,20 @@ productList.prepend(card);
 
   loadProducts();
 </script>
+<!-- GEBETA IMAGE ZOOM -->
+<div id="imageModal"
+     class="hidden fixed inset-0 z-[200] bg-black/80 items-center justify-center p-4">
 
+    <button id="closeImageModal"
+            type="button"
+            class="absolute top-4 right-5 text-white text-4xl font-bold">
+        &times;
+    </button>
+
+    <img id="modalImage"
+         src=""
+         alt="Product Image"
+         class="max-h-[85vh] max-w-[92vw] object-contain rounded-xl">
+
+</div>
+<!-- END GEBETA IMAGE ZOOM -->
