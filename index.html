@@ -570,18 +570,28 @@ categoryButtons.forEach(function (button, index) {
       event.preventDefault();
 
     // 🟢 የምርት መረጃ
-const inputs = document.querySelectorAll("#sell input, #sell select");
 
-const title = inputs[0]?.value?.trim();
-const category = inputs[1]?.value?.trim();
-const price = Number(inputs[2]?.value);
-const imageInput = inputs[3];
-const location = inputs[4]?.value?.trim();
+const title = document.querySelector("#sell input[placeholder='ለምሳሌ፡ Fashion Shoes']")?.value.trim();
 
-// 🟢 የሻጭ መረጃ
-const sellerName = document.getElementById("sellerName").value.trim();
-const phone = document.getElementById("sellerPhone").value.trim();
+const category = document.querySelector("#sell select")?.value.trim();
 
+const price = Number(
+  document.querySelector("#sell input[type='number']")?.value
+);
+
+const imageInput = document.getElementById("productImages");
+
+const description =
+  document.getElementById("productDescription")?.value.trim() || "";
+
+const sellerName =
+  document.getElementById("sellerName")?.value.trim() || "";
+
+const phone =
+  document.getElementById("sellerPhone")?.value.trim() || "";
+
+const location =
+  document.querySelector("#sell input[placeholder='ቦሌ፣ አዲስ አበባ']")?.value.trim() || "";
       if (!title || !category || !price || price <= 0) {
         alert("እባክህ የምርት ስም፣ ምድብ እና ትክክለኛ ዋጋ አስገባ።");
         return;
