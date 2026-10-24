@@ -255,9 +255,36 @@ const supabaseClient = window.supabase.createClient(
                         <input type="number" placeholder="2500" class="w-full p-2.5 rounded-xl border border-slate-200 focus:outline-emerald-600">
                     </div>
                     <div>
-                        <label class="block font-medium text-slate-700 mb-1">የምርት ፎቶ</label>
-                        <input type="file" class="w-full p-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-500">
-                    </div>
+                     <div>
+    <label class="block font-medium text-slate-700 mb-1">
+        የምርት ፎቶዎች
+    </label>
+
+    <input
+        id="productImages"
+        type="file"
+        accept="image/*"
+        multiple
+        class="w-full p-2 rounded-xl border border-slate-200 bg-slate-50 text-slate-500"
+    >
+
+    <p class="text-xs text-slate-500 mt-1">
+        እስከ 5 ፎቶ መምረጥ ትችላለህ።
+    </p>
+</div>
+
+<div>
+    <label class="block font-medium text-slate-700 mb-1">
+        የምርት መግለጫ
+    </label>
+
+    <textarea
+        id="productDescription"
+        rows="4"
+        placeholder="ስለ ምርቱ ዝርዝር መረጃ ይጻፉ..."
+        class="w-full p-3 rounded-xl border border-slate-200 bg-slate-50"
+    ></textarea>
+</div>   
                     <div>
                         <!-- የሻጭ ስም -->
 <div>
