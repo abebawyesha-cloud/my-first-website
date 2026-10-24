@@ -837,3 +837,42 @@ productList.prepend(card);
 
 </div>
 <!-- END GEBETA IMAGE ZOOM -->
+<script>
+// GEBETA IMAGE ZOOM
+const imageModal = document.getElementById("imageModal");
+const modalImage = document.getElementById("modalImage");
+const closeImageModal = document.getElementById("closeImageModal");
+const productListForZoom = document.getElementById("productList");
+
+if (productListForZoom && imageModal && modalImage && closeImageModal) {
+  productListForZoom.addEventListener("click", function(event) {
+    const clickedImage = event.target.closest(".product-main-image");
+    if (!clickedImage) return;
+
+    modalImage.src = clickedImage.src;
+    imageModal.classList.remove("hidden");
+    imageModal.classList.add("flex");
+  });
+
+  function closeGebetaImageModal() {
+    imageModal.classList.add("hidden");
+    imageModal.classList.remove("flex");
+    modalImage.src = "";
+  }
+
+  closeImageModal.addEventListener("click", closeGebetaImageModal);
+
+  imageModal.addEventListener("click", function(event) {
+    if (event.target === imageModal) {
+      closeGebetaImageModal();
+    }
+  });
+
+  document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+      closeGebetaImageModal();
+    }
+  });
+}
+// END GEBETA IMAGE ZOOM
+</script>
