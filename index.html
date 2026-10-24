@@ -602,13 +602,16 @@ const location =
 
       try {
           
-        const imageFile = imageInput?.files?.[0];
+        const files = Array.from(imageInput?.files || []).slice(0, 5);
 
-let imageUrl = "";
+const imageUrls = [];
 
-if (imageFile) {
+for (const imageFile of files) {
+
   const fileName =
-    Date.now() + "-" + imageFile.name.replace(/\s+/g, "-");
+    Date.now() + "-" +
+    crypto.randomUUID() + "-" +
+    imageFile.name.replace(/\s+/g, "-");
 
   const { error: uploadError } = await supabaseClient
     .storage
@@ -622,8 +625,10 @@ if (imageFile) {
     .from("product-image")
     .getPublicUrl(fileName);
 
-  imageUrl = publicUrlData.publicUrl;
+  imageUrls.push(publicUrlData.publicUrl);
 }
+
+const imageUrl = imageUrls[0] || "";
 
 const { data, error } = await supabaseClient
   .from("products")
