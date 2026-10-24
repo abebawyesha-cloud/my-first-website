@@ -633,14 +633,16 @@ const imageUrl = imageUrls[0] || "";
 const { data, error } = await supabaseClient
   .from("products")
   .insert([{
-    title: title,
-    category: category,
-    price: price,
-    image_url: imageUrl,
-seller_name: sellerName,
-location: location || "",
-phone: phone
-  }])
+  title: title,
+  category: category,
+  price: price,
+  image_url: imageUrl,
+  image_urls: imageUrls,
+  description: description,
+  seller_name: sellerName,
+  location: location || "",
+  phone: phone
+}])
   .select();
 
 if (error) throw error;
